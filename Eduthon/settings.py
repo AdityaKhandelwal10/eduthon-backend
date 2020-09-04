@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #apps here
     'testApp',
     'group',
+    'indv',
 ]
 
 MIDDLEWARE = [
