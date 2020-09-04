@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps here
     'testApp',
+    'group',
 ]
 
 MIDDLEWARE = [
@@ -89,10 +90,10 @@ DATABASES = {
 
 GRAPHENE = {
     'SCHEMA': 'eduthon.schema.schema', # Where your Graphene schema lives
-    #jwt
-    'MIDDLEWARE': [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    ],
+    # #jwt
+    # 'MIDDLEWARE': [
+    #     'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    # ],
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
