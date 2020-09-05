@@ -1,7 +1,7 @@
 from graphene_django import DjangoObjectType
 import graphene
 from .forms import NewUserForm
-from .models import User
+from .models import User, UserTokens
 from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField 
 from graphene import Field
@@ -30,9 +30,31 @@ class UserMutation(DjangoModelFormMutation):
     class Meta:
         form_class = NewUserForm
 
+class UserTokenType(DjangoObjectType):
+    class Meta:
+        model = UserTokens
+
+
+class UserTokenMutation(graphene.Mutation):
+    userToken = graphene.Field(UserTokenType)
+
+    class Arguments:
+        user = graphene.ID(required = True)
+    
+    def mutate(self, info, user):
+        chat_client = stream_chat.StreamChat(api_key="whkwvq9maq97", api_secret="dgdh3ck6ff3x4n8wfnfdbwe2tva3acb4qvh4kc2ynmgw2yfqme9tv6fzses5gxdu")
+        token = chat_client.create_token(user.username)
+
+        usertoken = UserTokens(user = user, jwt = token)
+        usertoken.save()
+
+        return UserTokenMutation(userToken = usertoken)
+        
+        
 
 class Mutation(graphene.ObjectType):
     create_user = UserMutation.Field()
+    create_userToken = UserTokenMutation.Field()
 
 
 
