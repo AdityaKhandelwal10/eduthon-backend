@@ -17,9 +17,19 @@ class TeamPortfolio(DjangoObjectType):
         interfaces = (relay.Node,)
 
 
+class GroupTasksModel(DjangoObjectType):
+    class Meta:
+        model = GroupTasks
+        filter_fields = ['task', 'description', 'team']
+        interfaces = (relay.Node,)
+
+
 class Query(graphene.ObjectType):
     teams = relay.Node.Field(TeamPortfolio)
     all_teams = DjangoFilterConnectionField(TeamPortfolio)
+
+    groupTasks = relay.Node.Field(GroupTasksModel)
+    all_groupTasks = DjangoFilterConnectionField(GroupTasksModel)
 
 
 #mutations
@@ -29,11 +39,24 @@ class TeamModelType(DjangoObjectType):
         model = TeamModel
 
 
-class IndvTaskMutation(DjangoModelFormMutation):
+class TeamModelMutation(DjangoModelFormMutation):
     ent = Field(TeamPortfolio)
 
     class Meta:
         form_class = TeamForm
 
+
+class GroupTaskType(DjangoObjectType):
+    class Meta:
+        model = GroupTasks
+
+
+class GroupTaskMutation(DjangoModelFormMutation):
+    ent = Field(GroupTasksModel)
+
+    class Meta:
+        form_class = GroupTasksForm
+
 class Mutation(graphene.ObjectType):
-    createTeam = IndvTaskMutation.Field()
+    createTeam = TeamModelMutation.Field()
+    createGroup = GroupTaskMutation.Field()
