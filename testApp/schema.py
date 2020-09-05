@@ -37,8 +37,7 @@ class CreateUser(graphene.Mutation):
         token = chat_client.create_token(username)
 
         user = User(username = username,
-        email = email, 
-        category = category, jwt = token, team = team
+        email = email, jwt = token, team = team
         )
         user.set_password(password)
         user.save()
