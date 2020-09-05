@@ -6,10 +6,11 @@ from group.models import TeamModel
 
 class User(AbstractUser):
     email = models.EmailField()
-    jwt = models.CharField(max_length=255)
     team = models.ForeignKey(TeamModel, on_delete = models.CASCADE, blank = True, null = True)
+    isTeamAdmin = models.BooleanField(default= False)
 
 
-
-
+class UserTokens(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    jwt = models.CharField(max_length= 255)
 
