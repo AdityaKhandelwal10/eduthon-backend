@@ -1,9 +1,5 @@
 from django.db import models
 
-
-
-
-
 class TeamModel(models.Model):
     members = models.IntegerField(default=0)
     name = models.CharField(max_length=40)
