@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'testApp',
     'group',
     'indv',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +91,7 @@ DATABASES = {
 
 
 GRAPHENE = {
-    'SCHEMA': 'eduthon.schema.schema', # Where your Graphene schema lives
+    'SCHEMA': 'Eduthon.schema.schema', # Where your Graphene schema lives
     # #jwt
     # 'MIDDLEWARE': [
     #     'graphql_jwt.middleware.JSONWebTokenMiddleware',
