@@ -6,7 +6,7 @@ from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField 
 from graphene import Field
 from graphene_django.forms.mutation import DjangoModelFormMutation
-from .forms import  IndvTaskForm,ProgressForm
+from .forms import  IndvTaskForm,ProgressForm, UpdateProgressForm
 
 #queries here
 class IndvTaskModel(DjangoObjectType):
@@ -55,8 +55,19 @@ class ProgressModelMutation(DjangoModelFormMutation):
     class Meta:
         form_class = ProgressForm
 
+class UpdateProgressModelType(DjangoObjectType):
+    class Meta:
+        model = ProgressModel
+
+        
+class updateProgress(DjangoModelFormMutation):
+    ent = Field(UpdateProgressModelType)
+
+    class Meta:
+        form_class = UpdateProgressForm
 
 
 class Mutation(graphene.ObjectType):
     createIndvTask = IndvTaskMutation.Field()
     addProgress = ProgressModelMutation.Field()
+    updateProgress = updateProgress.Field()
