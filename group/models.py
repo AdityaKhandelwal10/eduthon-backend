@@ -16,6 +16,7 @@ class TeamModel(models.Model):
 
 class GroupTasks(models.Model):
     task = models.CharField(max_length=288)
+    description = models.TextField(null =True)
     team  = models.ForeignKey(TeamModel, on_delete=models.CASCADE)
 
     def __str__(self):
