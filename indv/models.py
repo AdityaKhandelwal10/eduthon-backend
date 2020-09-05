@@ -6,7 +6,7 @@ class IndvTask(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     task = models.CharField(max_length=288)
     desc = models.TextField(null = True)
-    prog = models.IntegerField()
+    prog = models.IntegerField(default= 0)
 
     def __str__(self):
         return self.user
@@ -17,7 +17,7 @@ class IndvTask(models.Model):
 class ProgressModel(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     task = models.ForeignKey(GroupTasks, on_delete =models.CASCADE)
-    progress = models.IntegerField()
+    progress = models.IntegerField(default= 0 )
 
     def __str__(self):
         return self.User

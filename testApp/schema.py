@@ -29,6 +29,7 @@ class CreateUser(graphene.Mutation):
         password = graphene.String(required= True)
         email = graphene.String(required= True)
         jwt = graphene.String(required= False)
+        team = graphene.String(required = False)
         
     def mutate(self, info, username, password, email):
 
@@ -37,7 +38,7 @@ class CreateUser(graphene.Mutation):
 
         user = User(username = username,
         email = email, 
-        category = category, jwt = token
+        category = category, jwt = token, team = team
         )
         user.set_password(password)
         user.save()
