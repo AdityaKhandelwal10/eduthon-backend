@@ -4,9 +4,9 @@ from group.models import TeamModel, GroupTasks
 class TeamForm(ModelForm):
     class Meta:
         model = TeamModel
-        fields = ['members', 'name']
+        fields = '__all__'
 
 class GroupTasksForm(ModelForm):
     class Meta:
         model = GroupTasks
-        fields = ['task', 'team']
+        fields = '__all__'
