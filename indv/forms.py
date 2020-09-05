@@ -4,7 +4,7 @@ from indv.models import IndvTask
 class IndvTaskForm(ModelForm):
     class Meta:
         model = IndvTask
-        fields = ['task', 'prog']
+        fields = '__all__'
 
 
 
